@@ -1,0 +1,35 @@
+{% extends 'account/base.html' %}
+
+{% load crispy_forms_filters %}
+
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'account/css/style.css' %}">
+    <div class="container">
+        <legend class="border-bottom mb-4" style="color: white; margin-top: 30px;"><h1>Sign In Now</h1></legend>
+        <div class="container" style=" margin-left: 40px">
+    <form action="{%  url 'signin' %}" method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+
+          {{ form|crispy }}
+      </fieldset>
+      <br>
+        <div class="buttonHolder">
+    <input type="submit" name="submit" value="Signin" class="submit submitButton"  id="header-links"/>
+    </div>
+<br>
+      <div class="form-group">
+          <small class="text-muted ml-3">Don't have an account yet? <a href="{% url 'signup' %}">Sign Up Today</a></small>
+      </div>
+        <div class="form-group">
+            <a href="{% url 'password_reset' %}" >Forget Password</a>
+      </div>
+    </form>
+
+    </div>
+
+    </div>
+
+{% endblock %}

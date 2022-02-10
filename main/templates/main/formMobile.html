@@ -1,0 +1,28 @@
+<div class="category-item list" id="mobileForm">
+    <!-- BEGIN item-row -->
+{% if mobile %}
+    {% for product in mobile %}
+        <div class="item-row">
+            <!-- BEGIN item -->
+
+            <div class="item item-thumbnail">
+                <a href="product_detail.html" class="item-image">
+                    <img src="{{ product.image.url }}" alt=""/>
+                    <div class="discount">{{ product.discount }}</div>
+                </a>
+                <div class="item-info">
+                    <h4 class="item-title">
+                        <a href="product_detail.html">{{ product.name }}</a>
+                    </h4>
+                    <p class="item-desc"></p>{{ product.description }}
+                    <div class="item-price">{{ product.price }}</div>
+                    <div class="item-discount-price">$739.00</div>
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <h2>No item to show</h2>
+{% endif %}
+</div>

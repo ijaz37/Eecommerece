@@ -1,0 +1,384 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <head>
+        <style type="text/css">
+
+    </style>
+    </head>
+    <!-- BEGIN #product -->
+        <div id="product" class="section-container p-t-20">
+            <!-- BEGIN container -->
+            <div class="container">
+                <!-- BEGIN breadcrumb -->
+                <ul class="breadcrumb m-b-10 f-s-12">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Mobile Phone</a></li>
+                    <li><a href="#">Apple</a></li>
+                    <li class="active">{{ detail.title }}</li>
+                </ul>
+                <!-- END breadcrumb -->
+
+                <!-- BEGIN product -->
+                <div class="product">
+                    <!-- BEGIN product-detail -->
+                    <div class="product-detail">
+                        <!-- BEGIN product-image -->
+                        <div class="product-image">
+                            <!-- BEGIN product-thumbnail -->
+                            <div class="product-thumbnail">
+                                <ul class="product-thumbnail-list">
+                                {% if images %}
+                                     {% for image in images %}
+                                         {% if forloop.first %}
+                                          <li class="active"><a href="" data-click="show-main-image" data-url="{{ image.image.url }}"><img src="{{ image.image.url }}" alt="" /></a></li>
+                                         {% else %}
+                                          <li><a href="" data-click="show-main-image" data-url="{{ image.image.url }}"><img src="{{ image.image.url }}" alt="" /></a></li>
+                                              {% endif  %}
+                                    {% endfor %}
+                                {% else %}
+                                <h2>Images not found</h2>
+                                {% endif %}
+
+                                </ul>
+                            </div>
+                            <!-- END product-thumbnail -->
+                            <!-- BEGIN product-main-image -->
+                        {% if detail %}
+                            {% for detail in detail %}
+
+                            <div class="product-main-image" data-id="main-image">
+                                <img src="{{ detail.image.url }}" alt="" />
+                            </div>
+                            <!-- END product-main-image -->
+                        </div>
+                        <!-- END product-image -->
+                        <!-- BEGIN product-info -->
+                        <div class="product-info">
+                            <!-- BEGIN product-info-header -->
+                            <div class="product-info-header">
+                                <h1 class="product-title"><span class="label label-success">{{ detail.discount }}% OFF</span> {{ detail.title }} </h1>
+                                <ul class="product-category">
+                                   {{ detail.category }}
+                                </ul>
+                            </div>
+                            <!-- END product-info-header -->
+                            <!-- BEGIN product-warranty -->
+                            <div class="product-warranty">
+                                {% if available %}
+                                    <div class="pull-right">Availability: In stock</div>
+                                {% else %}
+                                    <div class="pull-right">Not: In stock</div>
+                                {% endif %}
+                                <div><b>{{ detail.warranty }}Year</b> Local Manufacturer Warranty</div>
+                            </div>
+                            <!-- END product-warranty -->
+                            <!-- BEGIN product-info-list -->
+                            <ul class="product-info-list">
+                               {{ detail.info }}
+                            </ul>
+                            <!-- END product-info-list -->
+                            <!-- BEGIN product-social -->
+                            <div class="product-social">
+                                <ul>
+                                    <li><a href="javascript:;" class="facebook" data-toggle="tooltip" data-trigger="hover" data-title="Facebook" data-placement="top"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="javascript:;" class="twitter" data-toggle="tooltip" data-trigger="hover" data-title="Twitter" data-placement="top"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="javascript:;" class="google-plus" data-toggle="tooltip" data-trigger="hover" data-title="Google Plus" data-placement="top"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="javascript:;" class="whatsapp" data-toggle="tooltip" data-trigger="hover" data-title="Whatsapp" data-placement="top"><i class="fa fa-whatsapp"></i></a></li>
+                                    <li><a href="javascript:;" class="tumblr" data-toggle="tooltip" data-trigger="hover" data-title="Tumblr" data-placement="top"><i class="fa fa-tumblr"></i></a></li>
+                                </ul>
+                            </div>
+                            <!-- END product-social -->
+                            <!-- BEGIN product-purchase-container -->
+                            <div class="product-purchase-container">
+                                <div class="product-discount">
+                                    <span class="discount">$869.00</span>
+                                </div>
+                                <div class="product-price">
+                                    <div class="price">{{ detail.product.price }}</div>
+                                </div>
+{#                                <form action="/add_to_cart">#}
+{#                                    {% csrf_token %}#}
+{#                                    <input type="hidden" name="product_id" value="{{ detail.id }}" id="product_id">#}
+{#                                    <button class="btn btn-inverse btn-lg" type="submit">ADD TO CART</button>#}
+{#                                </form>#}
+                                <a class="btn btn-inverse btn-lg" href="{% url 'add_to_cart' detail.id %}">ADD TO CART</a>
+
+                            </div>
+                            <!-- END product-purchase-container -->
+                        </div>
+                        <!-- END product-info -->
+                    </div>
+                            {% endfor %}
+                        {% else %}
+                        <h2>not foun</h2>
+                        {% endif %}
+                    <!-- END product-detail -->
+                    <!-- BEGIN product-tab -->
+                    <div class="product-tab">
+                        <!-- BEGIN #product-tab -->
+                        <ul id="product-tab" class=" nav nav-tabs">
+                            <li class="active"><a href="#product-desc" data-toggle="tab">Product Description</a></li>
+                            <li class=""><a href="#product-info" data-toggle="tab">Additional Information</a></li>
+                            <li class=""><a href="#product-reviews" data-toggle="tab">Rating & Reviews ( {{ count }} )</a></li>
+                        </ul>
+                        <!-- END #product-tab -->
+                        <!-- BEGIN #product-tab-content -->
+                        <div id="product-tab-content" class="tab-content">
+                            <!-- BEGIN #product-desc -->
+                            <div class="tab-pane fade active in" id="product-desc">
+                                <!-- BEGIN product-desc -->
+                                <div class="product-desc">
+                                    <div class="image">
+                                        <img src="{{ description.product_image_one.url }}" alt="" />
+                                    </div>
+                                    <div class="desc">
+                                        <h4>{{ description.product_heading_one }}</h4>
+                                        <p>
+                                            {{ description.product_description_one }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- END product-desc -->
+                                <!-- BEGIN product-desc -->
+                                <div class="product-desc right">
+                                    <div class="image">
+                                        <img src="{{ description.product_image_two.url }}" alt="" />
+                                    </div>
+                                    <div class="desc">
+                                        <h4>{{ description.product_heading_two }}</h4>
+                                        <p>
+                                            {{ description.product_description_two }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- END product-desc -->
+                                <!-- BEGIN product-desc -->
+                                <div class="product-desc">
+                                    <div class="image">
+                                        <img src="{{ description.product_image_three.url }}" alt="" />
+                                    </div>
+                                    <div class="desc">
+                                        <h4>{{ description.product_heading_three }}</h4>
+                                        <p>
+                                            {{ description.product_description_three }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- END product-desc -->
+                                <!-- BEGIN product-desc -->
+                                <div class="product-desc right">
+                                    <div class="image">
+                                        <img src="{{ description.product_image_four.url }}" alt="" />
+                                    </div>
+                                    <div class="desc">
+                                        <h4>{{ description.product_heading_four }}</h4>
+                                        <p>
+                                            {{ description.product_description_four }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- END product-desc -->
+                                <!-- BEGIN product-desc -->
+                                <div class="product-desc">
+                                    <div class="image">
+                                        <img src="{{ description.product_image_five.url }}" alt="" />
+                                    </div>
+                                    <div class="desc">
+                                        <h4>{{ description.product_heading_five }}</h4>
+                                        <p>
+                                            {{ description.product_description_five }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- END product-desc -->
+                            </div>
+                            <!-- END #product-desc -->
+                            <!-- BEGIN #product-info -->
+                            <div class="tab-pane fade" id="product-info">
+
+                                <!-- BEGIN table-responsive -->
+                                <div class="table-responsive">
+                                    <!-- BEGIN table-product -->
+                                    <table class="table table-product table-striped">
+                                     <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>iPhone 6s</th>
+                                                <th>iPhone 6s Plus</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% if information %}
+                                                {% for information in information %}
+                                                    <tr>
+                                                        <td class="field">{{ information.heading }}</td>
+                                                        <td>{{ information.description }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                            {% else %}
+                                                <h2>Data not found</h2>
+                                            {% endif  %}
+                                        </tbody>
+                                    </table>
+                                    <!-- END table-product -->
+                                </div>
+                                <!-- END table-responsive -->
+                            </div>
+                            <!-- END #product-info -->
+                            <!-- BEGIN #product-reviews -->
+                            <div class="tab-pane fade" id="product-reviews">
+                                <!-- BEGIN row -->
+                                <div class="row row-space-30">
+                                    <!-- BEGIN col-7 -->
+                                    <div class="col-md-7">
+                                        <!-- BEGIN review -->
+                                        {% for review in review reversed %}
+                                            <div class="review">
+                                            <div class="review-info">
+                                                <div class="review-icon"><img src=" " alt="" /></div>
+                                                <div class="review-rate">
+                                                    <ul class="review-star">
+                                                       {% if review.rating == "1" %}
+                                                           <li class="active" id="s11"><i class="fa fa-star"></i></li>
+                                                            <li class="" id="s22"><i class="fa fa-star"></i></li>
+                                                            <li class="" id="s33"><i class="fa fa-star"></i></li>
+                                                            <li class="" id="s44"><i class="fa fa-star"></i></li>
+                                                            <li class="" id="s55"><i class="fa fa-star-o"></i></li>
+                                                        {% endif %}
+                                                    {% if review.rating == "2" %}
+                                                           <li class="active" id="s11"><i class="fa fa-star"></i></li>
+                                                            <li class="active" id="s22"><i class="fa fa-star"></i></li>
+                                                            <li class="" id="s33"><i class="fa fa-star"></i></li>
+                                                            <li class="" id="s44"><i class="fa fa-star"></i></li>
+                                                            <li class="" id="s55"><i class="fa fa-star-o"></i></li>
+                                                        {% endif %}
+                                                    {% if review.rating == "3" %}
+                                                           <li class="active" id="s11"><i class="fa fa-star"></i></li>
+                                                            <li class="active" id="s22"><i class="fa fa-star"></i></li>
+                                                            <li class="active" id="s33"><i class="fa fa-star"></i></li>
+                                                            <li class="" id="s44"><i class="fa fa-star"></i></li>
+                                                            <li class="" id="s55"><i class="fa fa-star-o"></i></li>
+                                                        {% endif %}
+                                                    {% if review.rating == "4" %}
+                                                           <li class="active" id="s11"><i class="fa fa-star"></i></li>
+                                                            <li class="active" id="s22"><i class="fa fa-star"></i></li>
+                                                            <li class="active" id="s33"><i class="fa fa-star"></i></li>
+                                                            <li class="active" id="s44"><i class="fa fa-star"></i></li>
+                                                            <li class="" id="s55"><i class="fa fa-star-o"></i></li>
+                                                        {% endif %}
+                                                    {% if review.rating == "5" %}
+                                                           <li class="active" id="s11"><i class="fa fa-star"></i></li>
+                                                            <li class="active" id="s22"><i class="fa fa-star"></i></li>
+                                                            <li class="active" id="s33"><i class="fa fa-star"></i></li>
+                                                            <li class="active" id="s44"><i class="fa fa-star"></i></li>
+                                                            <li class="active" id="s55"><i class="fa fa-star-o"></i></li>
+                                                        {% endif %}
+                                                    </ul>
+
+                                                    ({{ review.rating }}/5)
+
+                                                </div>
+
+                                                <div class="review-name">{{ review.name }}</div>
+                                                <div class="review-date">{{ review.ondate }}</div>
+                                            </div>
+                                            <div class="review-title">
+                                               {{ review.title }}
+                                            </div>
+                                            <div class="review-message">
+                                                {{ review.review }}
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        <!-- END review -->
+                                    </div>
+                                    <!-- END col-7 -->
+                                    <div class="col-md-5">
+                                        <!-- BEGIN review-form -->
+                                        <div class="review-form">
+                                            <form action="" name="review_form" method="POST">
+                                                {% csrf_token %}
+                                                <h2>Write a review</h2>
+{#                                                <div class="form-group">#}
+{#                                                    <label for="name">Product <span class="text-danger">*</span></label>#}
+{#                                                   {{ form.product }}#}
+{#                                                </div>#}
+                                                <div class="form-group">
+                                                    <label for="name">Name <span class="text-danger">*</span></label>
+                                                   {{ form.name }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email">Title <span class="text-danger">*</span></label>
+                                                    {{ form.title }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="review">Review <span class="text-danger">*</span></label>
+                                                    {{ form.review }}
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label for="rating">Ratings <span class="text-danger">*</span></label>
+                                                    {{ form.rating }}
+                                                </div>
+                                                <div class="con">
+                                                    <li class="fa fa-star" aria-hidden="true" id="s1"></li>
+                                                     <li class="fa fa-star" aria-hidden="true" id="s2"></li>
+                                                     <li class="fa fa-star" aria-hidden="true" id="s3"></li>
+                                                     <li class="fa fa-star" aria-hidden="true" id="s4"></li>
+                                                     <li class="fa fa-star" aria-hidden="true" id="s5"></li>
+                                                </div>
+                                                <br><br>
+
+
+
+
+                                                <button type="submit" class="btn btn-inverse btn-lg" >Submit Review</button>
+                                            </form>
+                                        </div>
+                                        <!-- END review-form -->
+                                    </div>
+                                    <!-- END col-5 -->
+                                </div>
+                                <!-- END row -->
+                            </div>
+
+                        </div>
+                        <!-- END #product-tab-content -->
+                    </div>
+                    <!-- END product-tab -->
+                </div>
+                <!-- END product -->
+
+                <!-- BEGIN similar-product -->
+                <h4 class="m-b-15 m-t-30">You Might Also Like</h4>
+                <div class="row row-space-10">
+                    {% for product in product %}
+                    <div class="col-md-2 col-sm-4">
+                        <!-- BEGIN item -->
+
+                            <div class="item item-thumbnail">
+                            <a href="product_detail.html" class="item-image">
+                                <img src="{{ product.image.url }}" alt="">
+                                <div class="discount">{{ product.discount }}</div>
+                            </a>
+                            <div class="item-info">
+                                <h4 class="item-title">
+                                    <a href="product_detail.html">{{ product.name }}</a>
+                                </h4>
+                                <p class="item-desc">{{ product.description }}</p>
+                                <div class="item-price">{{ product.price }}</div>
+                                <div class="item-discount-price">{{ product.old_price }}</div>
+                            </div>
+                        </div>
+
+                        <!-- END item -->
+                    </div>
+                    {% endfor %}
+
+                </div>
+                <!-- END similar-product -->
+            </div>
+            <!-- END container -->
+        </div>
+        <!-- END #product -->
+{% endblock content %}

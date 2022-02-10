@@ -1,0 +1,23 @@
+<div class="category-item list" id="tabletForm">
+{% if tablet %}
+    {% for tablet in tablet %}
+        <div class="item-row">
+            <div class="item item-thumbnail">
+                <a href="product_detail.html" class="item-image">
+                    <img src="{{ tablet.image.url }}" alt="" />
+                    <div class="discount">{{ tablet.discount }}</div></a>
+                <div class="item-info">
+                    <h4 class="item-title">
+                        <a href="product_detail.html">{{ tablet.name }}</a></h4>
+                    <p class="item-desc"></p>{{ tablet.description }}
+                    <div class="item-price">{{ tablet.price }}</div>
+                    <div class="item-discount-price">$739.00</div>
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <h2>item Not Found</h2>
+{% endif %}
+</div>

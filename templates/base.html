@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{%  load static %}
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>index</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link rel="stylesheet" href="	https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'main/css/font-awesome.min.css' %}">
+
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<link href="{% static 'main/css/all.css' %}" rel="stylesheet" />
+	<link href="{% static 'main/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'main/plugins/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" />
+	<link href="{%  static 'main/css/style.min.css' %}" rel="stylesheet" />
+	<link href="{%  static 'main/css/style-responsive.min.css' %}" rel="stylesheet" />
+	<link href="{%  static 'main/css/theme/default.css' %}" id="theme" rel="stylesheet" />
+	<link href="{%  static 'main/css/animate.min.css' %}" rel="stylesheet" />
+    <link href="{%  static 'main/css/star.css' %}" rel="stylesheet">
+
+	<!-- ================== END BASE CSS STYLE ================== -->
+
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="{%  static 'main/plugins/pace/pace.min.js' %}"></script>
+	<!-- ================== END BASE JS ================== -->
+</head>
+<body>
+{#    <div id="page-container" class="fade">#}
+{##}
+{##}
+{##}
+{#    </div>#}
+    <!-- end theme-panel -->
+    {%  include 'header.html' %}
+        {% block content %}
+
+        {% endblock content %}
+    {%  include 'footer.html' %}
+
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="{%  static 'main/plugins/jquery/jquery-1.9.1.min.js' %}"></script>
+	<script src="{%  static 'main/plugins/jquery/jquery-migrate-1.1.0.min.js' %}"></script>
+	<script src="{%  static 'main/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+	<!--[if lt IE 9]>
+		<script src="{%  static 'main/crossbrowserjs/html5shiv.js' %}"></script>
+		<script src="{%  static 'main/crossbrowserjs/respond.min.js' %}"></script>
+		<script src="{%  static 'main/crossbrowserjs/excanvas.min.js' %}"></script>
+	<![endif]-->
+	<script src="{%  static 'main/plugins/jquery-cookie/jquery.cookie.js' %}"></script>
+	<script src="{% static 'main/js/apps.min.js' %}"></script>
+    <script src="{% static 'main/js/main.js' %}"></script>
+    <script src="{% static 'main/js/jquery.js' %}"></script>
+    <script src="{% static 'main/js/bootstrap.js' %}"></script>
+    <script src="{% static 'main/js/jquery.min.js' %}"></script>
+    <script src="{% static 'main/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'main/js/rating.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/0bcf883c05.js" crossorigin="anonymous"></script>
+	<!-- ================== END BASE JS ================== -->
+
+
+
+</body>
+</html>

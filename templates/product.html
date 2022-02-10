@@ -1,0 +1,46 @@
+   <!-- BEGIN #top-nav -->
+{% load static %}
+{% load product_tags %}
+
+
+<li class="dropdown dropdown-hover">
+    <a href="#" class="header-cart" data-toggle="dropdown">
+        <i class="fa fa-shopping-bag"></i>
+        <span class="total">{% countproduct %}</span>
+        <span class="arrow top"></span>
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-cart p-0">
+        <div class="cart-header">
+            <h4 class="cart-title">Shopping Bag ({% countproduct %}) </h4>
+        </div>
+        <div class="cart-body">
+            <ul class="cart-item">
+                 {% for i in myproduct %}
+                <li>
+
+                        <div class="cart-item-image"><img src="{{ i.product.image.url }}" alt="" /></div>
+                        <div class="cart-item-info">
+                            <h4>{{ i.product.name }}</h4>
+                            <p class="price">${{ i.product.price }}</p>
+                        </div>
+                        <div class="cart-item-close">
+                            <a href="#" data-toggle="tooltip" data-title="Remove">&times;</a>
+                        </div>
+
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="cart-footer">
+            <div class="row row-space-10">
+                <div class="col-xs-6">
+                    <a href="{% url 'add_to_cart' id %}" class="btn btn-default btn-block">View Cart</a>
+                </div>
+                <div class="col-xs-6">
+                    <a href="{% url 'add_to_cart' id %}" class="btn btn-inverse btn-block">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>
